@@ -1,0 +1,32 @@
+{
+    "directories": {
+        "src": {
+            "files": [
+                "cleanupRepo.py"
+            ],
+            "dirs": [
+                "utils",
+                "templates"
+            ]
+        },
+        "docs": {
+            "files": [
+                "usage.md"
+            ],
+            "dirs": [
+                "examples"
+            ]
+        },
+        "tests": {
+            "files": [],
+            "dirs": []
+        }
+    },
+    "root_files": [
+        "README.md",
+        "README.html",
+        "README.txt",
+        "requirements.py",
+        "LICENSE"
+    ]
+}
