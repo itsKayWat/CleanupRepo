@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanupRepo - Universal Repository Structure Cleaner</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --heading-color: #0366d6;
+            --code-bg: #f6f8fa;
+            --section-bg: #ffffff;
+            --warning-bg: #fffbdd;
+            --warning-border: #d9b310;
+            --example-bg: #f0f7ff;
+            --example-border: #0366d6;
+            --button-bg: #0077ee;
+            --button-hover: #0055bb;
+            --button-text: #ffffff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a1a;
+                --text-color: #ffffff;
+                --heading-color: #58a6ff;
+                --code-bg: #2d2d2d;
+                --section-bg: #2d2d2d;
+                --warning-bg: #3b2e00;
+                --warning-border: #d9b310;
+                --example-bg: #0d1d2d;
+                --example-border: #58a6ff;
+                --button-bg: #0077ee;
+                --button-hover: #58a6ff;
+                --button-text: #ffffff;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: var(--heading-color);
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        }
+        pre {
+            background-color: var(--code-bg);
+            padding: 16px;
+            border-radius: 6px;
+            overflow: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .warning {
+            background-color: var(--warning-bg);
+            border-left: 4px solid var(--warning-border);
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .example {
+            background-color: var(--example-bg);
+            border-left: 4px solid var(--example-border);
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .developer-section {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .coffee-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .coffee-btn {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .coffee-btn:hover {
+            background-color: var(--button-hover);
+        }
+    </style>
+</head>
+<body>
+    <h1>CleanupRepo</h1>
+    
+    <h2>Overview</h2>
+    <p>
+        CleanupRepo is a universal project structure cleaner designed to help developers standardize and organize 
+        repository structures. It allows you to reorganize your project files according to predefined templates 
+        while safely archiving existing files.
+    </p>
+
+    <h2>Why CleanupRepo?</h2>
+    <ul>
+        <li>Standardize project structures across teams</li>
+        <li>Clean up messy repositories</li>
+        <li>Migrate projects to new organizational structures</li>
+        <li>Set up consistent boilerplate for new projects</li>
+        <li>Maintain structural compliance with organizational standards</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <p>CleanupRepo requires Python 3.6+ and uses only standard library modules.</p>
+    
+    <pre><code># Clone the repository
+git clone https://github.com/yourusername/CleanupRepo.git
+
+# Make the script executable
+chmod +x cleanupRepo.py
+
+# Optional: Add to your PATH for system-wide access</code></pre>
+
+    <h2>Usage</h2>
+
+    <h3>Basic Usage</h3>
+    <pre><code>python3 cleanupRepo.py</code></pre>
+    <p>This launches interactive mode with menu options.</p>
+
+    <h3>Command Line Options</h3>
+    <pre><code># Use a structure from URL
+python3 cleanupRepo.py --url https://example.com/structure.map
+
+# Use a local structure file
+python3 cleanupRepo.py --file path/to/structure.map
+
+# Use an existing directory as template
+python3 cleanupRepo.py --file path/to/template_directory
+
+# Create a template from current directory
+python3 cleanupRepo.py --create-template [output_directory]</code></pre>
+
+    <h3>Structure Files (.map)</h3>
+    <p>CleanupRepo uses JSON-formatted .map files to define repository structures:</p>
+    <pre><code>{
+    "directories": {
+        "src": {
+            "files": ["main.py", "utils.py"],
+            "dirs": ["modules", "config"]
+        },
+        "docs": {
+            "files": ["index.md"],
+            "dirs": ["api", "examples"]
+        }
+    },
+    "root_files": ["README.md", "LICENSE", "setup.py"]
+}</code></pre>
+
+    <h2>Example Use Case</h2>
+    <div class="example">
+        <p>Imagine your team has just established coding standards that specify a particular project structure. 
+           You have several repositories that need to be updated to match this standard.</p>
+        
+        <ol>
+            <li>Create a template from a model repository:
+                <pre><code>python3 cleanupRepo.py --create-template</code></pre>
+            </li>
+            <li>Review and modify the generated repository_structure.map file</li>
+            <li>Apply this structure to other repositories:
+                <pre><code>cd /path/to/messy/repo
+python3 /path/to/cleanupRepo.py --file /path/to/repository_structure.map</code></pre>
+            </li>
+        </ol>
+
+        <p>CleanupRepo will:</p>
+        <ul>
+            <li>Create a timestamped archive of all existing files</li>
+            <li>Reorganize the repository according to the template</li>
+            <li>Restore specified files to their new locations</li>
+        </ul>
+    </div>
+
+    <h2>Safety Features</h2>
+    <ul>
+        <li>All existing files are archived before making changes</li>
+        <li>Preview of changes before execution</li>
+        <li>No files are deleted, only moved</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Note:</strong> While CleanupRepo is designed to be safe, it's always recommended to back up 
+        important repositories before performing structural changes.
+    </div>
+
+    <h2>License</h2>
+    <p>MIT License</p>
+
+    <div class="developer-section">
+        <h3>👋 Hello Developers!</h3>
+        <p>CleanupRepo is developed and maintained by KayWat with ❤️</p>
+        
+        <h4>💰 Donate to KayWat</h4>
+        <p>Your support keeps me fueled and creating! Thanks!</p>
+        
+        <div class="coffee-buttons">
+            <a href="https://www.paypal.com/donate/?hosted_button_id=J3ABMPG6MQF3L&custom=1coffee" class="coffee-btn">
+                ☕️ $6 (1 coffee)
+            </a>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=J3ABMPG6MQF3L&custom=2coffees" class="coffee-btn">
+                ☕️☕️ $12 (2 coffees)
+            </a>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=J3ABMPG6MQF3L&custom=3coffees" class="coffee-btn">
+                ☕️☕️☕️ $24 (3 coffees)
+            </a>
+        </div>
+        <p>Your support helps keep this project maintained and improved!</p>
+    </div>
+</body>
+</html>
