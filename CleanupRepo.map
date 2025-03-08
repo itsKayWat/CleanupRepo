@@ -1,0 +1,167 @@
+<think>
+I understand now - you want a written document explaining the same information as the map file, but in plain English prose rather than JSON format. I'll rewrite this information in a structured text document that explains all the same information but in readable paragraphs and sections.
+</think>
+
+# CleanupRepo Project Documentation
+
+## 1. Project Overview
+CleanupRepo is a powerful Python tool developed and maintained by KayWat, designed for restructuring and organizing project repositories. Currently at version 1.0.0, this tool helps developers standardize project structures, migrate between organizational patterns, and maintain consistency across repositories. The project is hosted at https://github.com/KayWat/CleanupRepo.
+
+## 2. Repository Structure
+The project is organized in a clean, modular structure:
+
+### Main Directories:
+- **src/** - Contains the core application code
+  - **cleanupRepo.py** - Main application entry point
+  - **utils/** - Utility modules including:
+    - file_operations.py - File system operations
+    - template_parser.py - Parses template files
+    - archive.py - Handles backup creation
+    - validators.py - Input and template validation
+  - **templates/** - Standard project templates
+    - default.map, python_project.map, web_project.map, documentation_project.map
+
+- **docs/** - Documentation files
+  - usage.md, api.md, faq.md
+  - **examples/** - Example use cases
+    - basic_example.md, custom_template.md, migration_example.md
+
+- **tests/** - Testing resources
+  - test_cleanupRepo.py, test_file_operations.py, test_template_parser.py
+  - **fixtures/** - Test data
+    - sample_repo.zip, complex_repo.zip
+
+### Root Files:
+- README files (.md, .html, .txt)
+- requirements.py - Installation script
+- LICENSE - Project license
+- setup.py - Python package setup
+- CleanupRepo.map - Project metadata
+
+## 3. File Types and Roles
+
+### Python (.py) Files
+These files contain the core application code, utilities, and tests. They require Python 3.6 or later to execute.
+
+### Map (.map) Files
+These JSON-formatted files define repository structures and file organization patterns. They don't have external dependencies and are central to the template system.
+
+### Documentation Files
+- **Markdown (.md)**: User and developer documentation
+- **HTML (.html)**: Enhanced documentation with styling (requires web browser)
+- **Text (.txt)**: Basic documentation compatible with all text editors
+
+## 4. File Relationships and Dependencies
+
+### cleanupRepo.py
+This is the main entry point and controller for the application. It depends on all utility modules (file_operations.py, template_parser.py, archive.py, validators.py).
+
+### utils/file_operations.py
+Handles all file system operations like create, move, and delete. Has no internal dependencies.
+
+### utils/template_parser.py
+Parses .map template files into usable data structures. Depends on validators.py.
+
+### utils/archive.py
+Creates and manages archive copies of repositories before reorganization. Depends on file_operations.py.
+
+### utils/validators.py
+Validates inputs, file paths, and template structures. Has no internal dependencies.
+
+## 5. Workflow Process
+
+1. **Template Selection**: User selects or creates a repository template through command line arguments or an interactive menu.
+2. **Repository Analysis**: The system analyzes the current repository structure using file_operations.py.
+3. **Archiving**: The system creates a backup of the existing repository using archive.py.
+4. **Structure Planning**: A reorganization plan is generated based on template_parser.py.
+5. **Preview**: The user reviews planned changes through the command line interface.
+6. **Execution**: The system executes the reorganization plan using file_operations.py.
+7. **Verification**: The system verifies the new structure matches the template using validators.py.
+
+## 6. System Architecture
+
+### UI Layer
+The Command Line Interface, implemented in cleanupRepo.py, provides user interaction through terminal commands and prompts.
+
+### Controller Layer
+The main controller in cleanupRepo.py orchestrates the entire process based on user input.
+
+### Service Layer
+Components like template_parser.py and validators.py process and validate inputs and templates.
+
+### Data Management Layer
+The file_operations.py and archive.py components manage file system operations and data persistence.
+
+## 7. Project Roadmap
+
+### Completed Features:
+- **Basic Repository Restructuring** (v0.5.0, completed 2023-09-15): Core functionality to reorganize files according to templates.
+- **Template Creation from Existing Repositories** (v0.7.0, completed 2023-10-01): Generate templates from existing directory structures.
+- **Archiving System** (v0.8.0, completed 2023-10-15): Create backups before making changes.
+- **Command Line Interface** (v0.9.0, completed 2023-11-01): Basic CLI for user interaction.
+- **Documentation** (v1.0.0, completed 2023-11-15): Initial README and usage guides.
+
+### In-Progress Features:
+- **Template Library** (70% complete, target v1.1.0, est. 2024-01-15): Collection of common project templates.
+- **Interactive Mode Improvements** (50% complete, target v1.1.0, est. 2024-01-15): Enhanced interactive experience with better menus.
+
+### Planned Features:
+- **Web Interface** (v1.2.0, est. 2024-03-01): Browser-based UI for template creation and management.
+- **Project Analysis** (v1.3.0, est. 2024-05-01): Analyze and suggest improvements to repository structures.
+- **CI/CD Integration** (v1.4.0, est. 2024-07-01): Integrate with CI/CD pipelines for automated repository standardization.
+- **Team Collaboration** (v1.5.0, est. 2024-09-01): Share and collaborate on templates with team members.
+
+## 8. Known Issues
+
+### ISSUE-001: Large Repository Performance
+- **Status**: Open
+- **Description**: When processing repositories with more than 1000 files, significant slowdowns occur.
+- **Workaround**: Process directories in smaller batches.
+- **Priority**: Medium
+- **Assigned to**: KayWat
+- **Planned fix**: v1.1.0
+
+### ISSUE-002: Windows Path Length Limitation
+- **Status**: Investigating
+- **Description**: On Windows, paths exceeding 260 characters cause failures.
+- **Workaround**: Use shorter relative paths in templates.
+- **Priority**: High
+- **Assigned to**: KayWat
+- **Planned fix**: v1.1.0
+
+### ISSUE-003: Binary File Identification
+- **Status**: Open
+- **Description**: Some binary files are incorrectly processed as text files.
+- **Workaround**: Manually exclude binary files or use archive option.
+- **Priority**: Low
+- **Assigned to**: Unassigned
+- **Planned fix**: v1.2.0
+
+## 9. Future Projections
+
+### 2024 Outlook
+- **Focus Areas**:
+  - Improve usability and interface
+  - Expand template library
+  - Add basic repository analysis features
+- **Key Releases**:
+  - v1.1.0 (Q1 2024): Template Enhancements
+  - v1.2.0 (Q2 2024): Web Interface
+- **Estimated User Base**: 1,000-5,000 users
+
+### 2025 Outlook
+- **Focus Areas**:
+  - Team collaboration features
+  - Integration with popular CI/CD platforms
+  - Advanced repository analysis and recommendations
+- **Key Releases**:
+  - v2.0.0 (Q2 2025): Enterprise Features
+- **Estimated User Base**: 5,000-20,000 users
+
+## 10. Current Completion Status
+- **Overall Progress**: 65% complete
+- **Core Features**: 90% complete
+- **Documentation**: 75% complete
+- **Testing**: 60% complete
+- **User Interface**: 50% complete
+- **Templates**: 40% complete
